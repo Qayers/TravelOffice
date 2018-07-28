@@ -1,10 +1,10 @@
 package com.travelsite.traveloffice.service;
 
-import org.springframework.data.repository.Repository;
-
 import java.io.Serializable;
 
-public interface CrudService<T, ID extends Serializable>{
+
+public interface CrudService<T, ID extends Serializable>  {
+
 
     <S extends T> S add(S entity);
 
