@@ -3,7 +3,9 @@ package com.travelsite.traveloffice.service;
 import com.travelsite.traveloffice.model.CityEntity;
 import com.travelsite.traveloffice.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CityServiceImpl extends CrudServiceBaseImpl<CityEntity> implements CityService {
 
     private CityRepository cityJpaRepository;
