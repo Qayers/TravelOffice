@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AirportController {
-    @Qualifier("airportServiceImpl")
+public class PurchasedTripController {
+    @Qualifier("purchasedTripServiceImpl")
     @Autowired
-    private CrudService airportService;
+    private CrudService purchasedTripService;
 
-    @GetMapping("/airport")
-    public Iterable getAirportName() {
-        return airportService.findAll();
+    @GetMapping("/Trip")
+    public Iterable getOwnerName() {
+        return purchasedTripService.findAll();
     }
 //TODO next metods
 }
