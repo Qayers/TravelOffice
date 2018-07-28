@@ -1,6 +1,7 @@
 package com.travelsite.traveloffice.service;
 
-public class AirportService {
+import com.travelsite.traveloffice.model.AirportEntity;
 
+public interface AirportService extends CrudService<AirportEntity,Long>{
 
 }
