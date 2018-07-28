@@ -9,4 +9,5 @@ public class CityController {
     public String getCity(){
         return "{city: Warszawa}";
     }
+
 }
