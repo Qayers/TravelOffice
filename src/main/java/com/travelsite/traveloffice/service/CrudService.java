@@ -4,7 +4,7 @@ import org.springframework.data.repository.Repository;
 
 import java.io.Serializable;
 
-public interface CrudService<T, ID extends Serializable> extends Repository<T, ID> {
+public interface CrudService<T, ID extends Serializable>{
 
     <S extends T> S add(S entity);
 

@@ -2,9 +2,9 @@ package com.travelsite.traveloffice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-
 @RequiredArgsConstructor
 public abstract class CrudServiceBaseImpl<T> implements CrudService<T,Long> {
 
@@ -18,31 +18,31 @@ public abstract class CrudServiceBaseImpl<T> implements CrudService<T,Long> {
 
     @Override
     public T findOne(Long primaryKey) {
-        return null;
+        return repository.findById(primaryKey).orElse(null);
     }
 
     @Override
     public Iterable<T> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Long count() {
-        return null;
+        return repository.count();
     }
 
     @Override
     public void delete(T entity) {
-
+        repository.delete(entity);
     }
 
     @Override
     public void modify(T entity) {
-
+        repository.save(entity);
     }
 
     @Override
     public boolean exists(Long primaryKey) {
-        return false;
+        return repository.existsById(primaryKey);
     }
 }
