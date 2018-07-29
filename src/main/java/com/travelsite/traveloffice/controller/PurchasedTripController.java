@@ -21,13 +21,13 @@ public class PurchasedTripController {
     }
 
     @PostMapping("/addPurchasedTrip")
-    public ResponseEntity<PurchasedTripEntity> addTrip(@RequestBody PurchasedTripEntity purchasedTripEntity) {
+    public ResponseEntity<PurchasedTripEntity> addPurchasedTrip(@RequestBody PurchasedTripEntity purchasedTripEntity) {
         purchasedTripService.add(purchasedTripEntity);
         return ResponseEntity.ok(purchasedTripEntity);
     }
 
     @GetMapping("/getPurchasedTrip/{id}")
-    public ResponseEntity<PurchasedTripEntity> getHotel(@PathVariable Long id) {
+    public ResponseEntity<PurchasedTripEntity> getPurchasedTrip(@PathVariable Long id) {
         PurchasedTripEntity purchasedTripEntity = (PurchasedTripEntity) purchasedTripService.findOne(id);
         return ResponseEntity.ok(purchasedTripEntity);
     }
