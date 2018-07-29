@@ -1,7 +1,6 @@
 package com.travelsite.traveloffice.controller;
 
 import com.travelsite.traveloffice.model.CityEntity;
-import com.travelsite.traveloffice.model.ContinentEntity;
 import com.travelsite.traveloffice.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
