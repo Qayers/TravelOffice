@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+
 @RequiredArgsConstructor
-public abstract class CrudServiceBaseImpl<T> implements CrudService<T,Long> {
+public abstract class CrudServiceBaseImpl<T> implements CrudService<T, Long> {
 
     private final JpaRepository<T, Long> repository;
 
@@ -36,12 +37,12 @@ public abstract class CrudServiceBaseImpl<T> implements CrudService<T,Long> {
     public void delete(T entity) {
         repository.delete(entity);
     }
+
     @Override
     public void delete(Long id) {
         T t = findOne(id);
         delete(t);
     }
-
 
     @Override
     public void modify(T entity) {
