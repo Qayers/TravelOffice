@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AirportController {
     @Qualifier("airportServiceImpl")
@@ -43,7 +43,7 @@ public class AirportController {
         airportService.delete(id);
     }
 
-    @GetMapping(value = "/airportCountry")
+    @GetMapping(value = "/airportCount")
     public ResponseEntity count() {
         return ResponseEntity.ok(airportService.count());
     }
