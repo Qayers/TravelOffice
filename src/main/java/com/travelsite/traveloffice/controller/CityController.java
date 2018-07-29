@@ -19,7 +19,7 @@ public class CityController {
     }
 
     @PostMapping("/addCity")
-    public ResponseEntity<CityEntity> addContinent(@RequestBody CityEntity cityEntity) {
+    public ResponseEntity<CityEntity> addCity(@RequestBody CityEntity cityEntity) {
         cityService.add(cityEntity);
         return ResponseEntity.ok(cityEntity);
     }

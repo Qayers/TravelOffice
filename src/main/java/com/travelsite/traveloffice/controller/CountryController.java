@@ -19,13 +19,13 @@ public class CountryController {
     }
 
     @PostMapping("/addCountry")
-    public ResponseEntity<CountryEntity> addContinent(@RequestBody CountryEntity countryEntity) {
+    public ResponseEntity<CountryEntity> addCountry(@RequestBody CountryEntity countryEntity) {
         countryService.add(countryEntity);
         return ResponseEntity.ok(countryEntity);
     }
 
     @GetMapping("/getCountry/{id}")
-    public ResponseEntity<CountryEntity> getCity(@PathVariable Long id) {
+    public ResponseEntity<CountryEntity> getCountry(@PathVariable Long id) {
         CountryEntity countryEntity = (CountryEntity) countryService.findOne(id);
         return ResponseEntity.ok(countryEntity);
     }
