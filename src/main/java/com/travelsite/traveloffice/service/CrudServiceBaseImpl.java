@@ -1,5 +1,6 @@
 package com.travelsite.traveloffice.service;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,12 @@ public abstract class CrudServiceBaseImpl<T> implements CrudService<T,Long> {
     public void delete(T entity) {
         repository.delete(entity);
     }
+    @Override
+    public void delete(Long id) {
+        T t = findOne(id);
+        delete(t);
+    }
+
 
     @Override
     public void modify(T entity) {
