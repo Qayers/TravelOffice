@@ -23,5 +23,6 @@ public interface CrudService<T, ID extends Serializable> {
     void modify(T entity);
 
     boolean exists(ID primaryKey);
+
 }
 

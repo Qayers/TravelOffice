@@ -3,6 +3,7 @@ package com.travelsite.traveloffice.controller;
 import com.travelsite.traveloffice.model.PurchasedTripEntity;
 import com.travelsite.traveloffice.model.TripEntity;
 import com.travelsite.traveloffice.service.CrudService;
+import com.travelsite.traveloffice.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class TripController {
     @Qualifier("tripServiceImpl")
     @Autowired
-    private CrudService tripService;
+    private TripService tripService;
 
     @GetMapping("/tripFrom")
     public Iterable getAirportFromName() {
@@ -47,5 +48,10 @@ public class TripController {
     @GetMapping(value = "/tripCount")
     public ResponseEntity count() {
         return ResponseEntity.ok(tripService.count());
+    }
+
+    @GetMapping(value = "/searchByCity/{city}")
+    public ResponseEntity searchByCity(@PathVariable String city){
+        return ResponseEntity.ok(tripService.searchByCity(city));
     }
 }
