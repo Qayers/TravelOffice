@@ -3,7 +3,6 @@ package com.travelsite.traveloffice.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -12,8 +11,13 @@ public class CityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_city")
     private Long id;
-    private String city;
-    @OneToMany
-    private List<CountryEntity> countryID;
+    @Column(unique = true, nullable = false)
+    private String name;
+    @JoinColumn(name = "id_country")
+    @ManyToOne
+    private CountryEntity countryEntity;
+
+
 }

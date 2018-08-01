@@ -11,8 +11,12 @@ import javax.persistence.*;
 public class AirportEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id_airport")
     private Long id;
+    @Column(nullable = false,unique = true)
     private String name;
-    private Long cityId;
+    @JoinColumn(name = "id_city")
+    @ManyToOne
+    private CityEntity cityEntity;
 
 }

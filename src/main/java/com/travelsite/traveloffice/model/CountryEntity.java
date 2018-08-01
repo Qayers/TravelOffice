@@ -3,7 +3,7 @@ package com.travelsite.traveloffice.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Data
 @Entity
@@ -11,13 +11,13 @@ import java.util.List;
 public class CountryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JoinColumn(name="countryid")
-
+    @Column(name = "id_country")
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
-    @Column(name="continentid")
-    @OneToMany
-   private List<ContinentEntity> continentid;
+    @JoinColumn(name = "id_continent")
+    @ManyToOne
+    private ContinentEntity continentEntity;
+
 
 }
