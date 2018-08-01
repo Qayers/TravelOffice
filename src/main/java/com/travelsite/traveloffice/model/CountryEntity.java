@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.MERGE;
+
 
 @Data
 @Entity
@@ -16,7 +19,7 @@ public class CountryEntity {
     @Column(nullable = false,unique = true)
     private String name;
     @JoinColumn(name = "id_continent")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private ContinentEntity continentEntity;
 
 
