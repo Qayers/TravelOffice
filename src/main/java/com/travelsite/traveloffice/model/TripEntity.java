@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Data
 @Entity
 @Table(name = "trip")
@@ -15,15 +17,15 @@ public class TripEntity {
     @Column(name="id_trip")
     private Long id;
     @JoinColumn(name = "id_airportfrom")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private AirportEntity airportEntity;
 
     @JoinColumn(name = "id_airportto")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private AirportEntity airportEntity1;
 
     @JoinColumn(name = "id_hotel")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private HotelEntity hotelEntity;
 
     private String cityTo;
@@ -34,7 +36,7 @@ public class TripEntity {
     private Integer countOfDays;
 
     @JoinColumn(name = "type",referencedColumnName = "standard")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private HotelEntity hotelEntity1;
 
     private Double priceForAdult;

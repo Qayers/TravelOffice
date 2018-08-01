@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Data
 @Entity
 @Table(name = "airport")
@@ -16,7 +18,7 @@ public class AirportEntity {
     @Column(nullable = false,unique = true)
     private String name;
     @JoinColumn(name = "id_city")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private CityEntity cityEntity;
 
 }
