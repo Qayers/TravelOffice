@@ -4,16 +4,23 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.MERGE;
+
+
 @Data
 @Entity
 @Table(name = "country")
 public class CountryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(name = "id_country")
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
-    @Column(nullable = false)
-    private Long continentID;
+    @JoinColumn(name = "id_continent")
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    private ContinentEntity continentEntity;
+
+
 }

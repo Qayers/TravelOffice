@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Data
 @Entity
 @Table(name = "city")
@@ -11,7 +13,13 @@ public class CityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_city")
     private Long id;
-    private String city;
-    private Long cityID;
+    @Column(unique = true, nullable = false)
+    private String name;
+    @JoinColumn(name = "id_country")
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    private CountryEntity countryEntity;
+
+
 }
