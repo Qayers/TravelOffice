@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TripService extends CrudService<TripEntity, Long> {
 
-    List<TripEntity> searchByCity(String city);
+//    List<TripEntity> searchByCity(String city);
 }

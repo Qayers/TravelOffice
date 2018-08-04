@@ -20,12 +20,12 @@ public class TripServiceImpl extends CrudServiceBaseImpl<TripEntity> implements 
         this.tripJpaRepository = repository;
     }
 
-    @Override
-    public List<TripEntity> searchByCity(String city) {
-        List<TripEntity> list = tripJpaRepository.findAll()
-                .stream()
-                .filter(trip-> trip.getCityTo().equals(city))
-                .collect(Collectors.toList());
-        return list;
-    }
+//    @Override
+//    public List<TripEntity> searchByCity(String city) {
+//        List<TripEntity> list = tripJpaRepository.findAll()
+//                .stream()
+//                .filter(trip-> trip.getCityTo().equals(city))
+//                .collect(Collectors.toList());
+//        return list;
+//    }
 }

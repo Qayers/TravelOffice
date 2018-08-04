@@ -18,26 +18,24 @@ public class TripEntity {
     private Long id;
     @JoinColumn(name = "id_airportfrom")
     @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
-    private AirportEntity airportEntity;
+    private AirportEntity airportEntityFrom;
 
     @JoinColumn(name = "id_airportto")
     @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
-    private AirportEntity airportEntity1;
+    private AirportEntity airportEntityTo;
 
     @JoinColumn(name = "id_hotel")
     @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
     private HotelEntity hotelEntity;
 
-    private String cityTo;
-// Czy podpiąć do City ? Jeśli tak zmaiana wyszukiwania po miastach.
+    @JoinColumn(name="id_city")
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    private CityEntity cityTo;
 
     private Date departureDate;
     private Date returnDate;
     private Integer countOfDays;
 
-    @JoinColumn(name = "type",referencedColumnName = "standard")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
-    private HotelEntity hotelEntity1;
 
     private Double priceForAdult;
     private Double priceForChild;

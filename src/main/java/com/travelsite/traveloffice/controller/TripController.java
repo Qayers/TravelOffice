@@ -50,8 +50,8 @@ public class TripController {
         return ResponseEntity.ok(tripService.count());
     }
 
-    @GetMapping(value = "/searchByCity/{city}")
-    public ResponseEntity searchByCity(@PathVariable String city){
-        return ResponseEntity.ok(tripService.searchByCity(city));
-    }
+//    @GetMapping(value = "/searchByCity/{city}")
+//    public ResponseEntity searchByCity(@PathVariable String city){
+//        return ResponseEntity.ok(tripService.searchByCity(city));
+//    }
 }
