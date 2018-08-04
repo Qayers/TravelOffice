@@ -1,5 +1,6 @@
 package com.travelsite.traveloffice.controller;
 
+import com.sun.deploy.net.HttpResponse;
 import com.travelsite.traveloffice.model.ContinentEntity;
 import com.travelsite.traveloffice.model.CountryEntity;
 import com.travelsite.traveloffice.service.ContinentService;
@@ -30,6 +31,8 @@ public class CountryController {
 
     @GetMapping("/country")
     public Iterable getCountryName() {
+
+      ResponseEntity.ok();
         return countryService.findAll();
     }
 

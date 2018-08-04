@@ -34,6 +34,7 @@ public class CityController {
 
     @GetMapping("/city")
     public Iterable getCityName() {
+
         return cityService.findAll();
     }
 

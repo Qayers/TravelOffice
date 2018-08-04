@@ -1,5 +1,8 @@
 package com.travelsite.traveloffice.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +22,9 @@ public class CountryEntity {
     @Column(nullable = false,unique = true)
     private String name;
     @JoinColumn(name = "id_continent")
-    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private ContinentEntity continentEntity;
 
 
