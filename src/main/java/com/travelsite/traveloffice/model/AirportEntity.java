@@ -18,7 +18,7 @@ public class AirportEntity {
     @Column(nullable = false,unique = true)
     private String name;
     @JoinColumn(name = "id_city")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private CityEntity cityEntity;
 
 }

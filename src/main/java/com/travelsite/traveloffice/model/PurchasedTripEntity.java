@@ -13,7 +13,7 @@ public class PurchasedTripEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne (fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne (fetch = FetchType.LAZY,cascade = ALL)
     @JoinColumn(name = "id_trip")
     private TripEntity tripEntity;
     private Double amount;

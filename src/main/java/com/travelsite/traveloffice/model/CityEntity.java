@@ -18,7 +18,7 @@ public class CityEntity {
     @Column(unique = true, nullable = false)
     private String name;
     @JoinColumn(name = "id_country")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private CountryEntity countryEntity;
 
 

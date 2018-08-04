@@ -19,7 +19,7 @@ public class CountryEntity {
     @Column(nullable = false,unique = true)
     private String name;
     @JoinColumn(name = "id_continent")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private ContinentEntity continentEntity;
 
 

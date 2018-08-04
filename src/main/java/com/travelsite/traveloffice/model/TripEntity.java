@@ -17,19 +17,19 @@ public class TripEntity {
     @Column(name="id_trip")
     private Long id;
     @JoinColumn(name = "id_airportfrom")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private AirportEntity airportEntityFrom;
 
     @JoinColumn(name = "id_airportto")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private AirportEntity airportEntityTo;
 
     @JoinColumn(name = "id_hotel")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private HotelEntity hotelEntity;
 
     @JoinColumn(name="id_city")
-    @ManyToOne(fetch = FetchType.EAGER,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     private CityEntity cityTo;
 
     private Date departureDate;

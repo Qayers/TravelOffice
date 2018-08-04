@@ -14,10 +14,11 @@ public class HotelController {
     @Autowired
     private CrudService hotelService;
 
-    @GetMapping("/holel")
-    public Iterable getHolelName() {
+    @GetMapping("/hotel")
+    public Iterable getHotelName() {
         return hotelService.findAll();
     }
+
     @PostMapping("/addHotel")
     public ResponseEntity<HotelEntity> addHotel(@RequestBody HotelEntity hotelEntity) {
         hotelService.add(hotelEntity);
