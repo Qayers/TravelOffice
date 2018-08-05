@@ -6,6 +6,8 @@ import com.travelsite.traveloffice.model.CountryEntity;
 import com.travelsite.traveloffice.service.ContinentService;
 import com.travelsite.traveloffice.service.CountryService;
 import com.travelsite.traveloffice.service.CrudService;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import java.util.stream.StreamSupport;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@Slf4j
 public class CityController {
     @Qualifier("cityServiceImpl")
     @Autowired
@@ -37,35 +40,39 @@ public class CityController {
 
         return cityService.findAll();
     }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addCity")
-    public ResponseEntity<CityEntity> addCity(@RequestBody CityEntity cityEntity) {
-
-        CountryEntity countryEntity = cityEntity.getCountryEntity();
-        Stream<CountryEntity> countries = iteratorToStream(countryService.findAll().iterator(),true);
-        List<CountryEntity> list = countries.collect(Collectors.toList());
-        List<CountryEntity> checkList = list
-                .stream()
-                .filter(e -> e.getName().equals(countryEntity.getName()))
-                .collect(Collectors.toList());
-
-        if (!checkList.isEmpty()) {
-            cityEntity.setCountryEntity(checkList.get(0));
-        }else{
-            ContinentEntity continentEntity = countryEntity.getContinentEntity();
-            Stream<ContinentEntity> continents = iteratorToStream(continentService.findAll().iterator(),true);
-            List<ContinentEntity> list2 = continents.collect(Collectors.toList());
-            List<ContinentEntity> checkList2 = list2
-                    .stream()
-                    .filter(e -> e.getName().equals(continentEntity.getName()))
-                    .collect(Collectors.toList());
-
-            if (!checkList2.isEmpty()) {
-                countryEntity.setContinentEntity(checkList2.get(0));
-                cityEntity.setCountryEntity(countryEntity);
-            }
-        }
-        
+    public ResponseEntity<CityEntity> addCity(@RequestBody CityRequest cityRequest) {
+        log.info("addCity: {}", cityRequest);
+        CountryEntity countryEntity = countryService.findOne(cityRequest.getCountryEntity());
+        CityEntity cityEntity = new CityEntity();
+        cityEntity.setCountryEntity(countryEntity);
+        cityEntity.setName(cityRequest.getName());
+//        CountryEntity countryEntity = cityEntity.getCountryEntity();
+//        Stream<CountryEntity> countries = iteratorToStream(countryService.findAll().iterator(),true);
+//        List<CountryEntity> list = countries.collect(Collectors.toList());
+//        List<CountryEntity> checkList = list
+//                .stream()
+//                .filter(e -> e.getName().equals(countryEntity.getName()))
+//                .collect(Collectors.toList());
+//
+//        if (!checkList.isEmpty()) {
+//            cityEntity.setCountryEntity(checkList.get(0));
+//        }else{
+//            ContinentEntity continentEntity = countryEntity.getContinentEntity();
+//            Stream<ContinentEntity> continents = iteratorToStream(continentService.findAll().iterator(),true);
+//            List<ContinentEntity> list2 = continents.collect(Collectors.toList());
+//            List<ContinentEntity> checkList2 = list2
+//                    .stream()
+//                    .filter(e -> e.getName().equals(continentEntity.getName()))
+//                    .collect(Collectors.toList());
+//
+//            if (!checkList2.isEmpty()) {
+//                countryEntity.setContinentEntity(checkList2.get(0));
+//                cityEntity.setCountryEntity(countryEntity);
+//            }
+//        }
+//
         cityService.add(cityEntity);
         return ResponseEntity.ok(cityEntity);
     }
@@ -96,5 +103,14 @@ public class CityController {
     @GetMapping(value = "/countCity")
     public ResponseEntity count() {
         return ResponseEntity.ok(cityService.count());
+    }
+
+
+    @Data
+    private static class CityRequest {
+        private Long id;
+        private String name;
+        private Long countryEntity;
+
     }
 }

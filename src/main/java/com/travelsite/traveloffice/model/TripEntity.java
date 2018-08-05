@@ -19,6 +19,7 @@ public class TripEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id_trip")
     private Long id;
+
     @JoinColumn(name = "id_airportfrom")
     @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")

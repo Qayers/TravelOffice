@@ -16,11 +16,14 @@ public class PurchasedTripEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @ManyToOne (fetch = FetchType.LAZY,cascade = ALL)
     @JoinColumn(name = "id_trip")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private TripEntity tripEntity;
+
     private Double amount;
+
     private String owner;
 }

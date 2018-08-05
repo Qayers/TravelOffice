@@ -18,8 +18,10 @@ public class AirportEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id_airport")
     private Long id;
+
     @Column(nullable = false,unique = true)
     private String name;
+
     @JoinColumn(name = "id_city")
     @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
