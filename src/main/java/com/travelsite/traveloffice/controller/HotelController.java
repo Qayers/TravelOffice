@@ -1,5 +1,9 @@
 package com.travelsite.traveloffice.controller;
 
+
+import com.sun.xml.internal.bind.api.impl.NameConverter;
+import com.travelsite.traveloffice.model.AirportEntity;
+
 import com.travelsite.traveloffice.model.CityEntity;
 import com.travelsite.traveloffice.model.HotelEntity;
 import com.travelsite.traveloffice.service.CityService;
@@ -38,6 +42,8 @@ public class HotelController {
         HotelEntity hotelEntity = new HotelEntity();
         hotelEntity.setName(hotelRequest.getName());
         hotelEntity.setCityEntity(cityEntity);
+        hotelEntity.setDescription(hotelRequest.getDescription());
+        hotelEntity.setStandard(hotelRequest.getStandard());
         hotelService.add(hotelEntity);
         return ResponseEntity.ok(hotelEntity);
     }
@@ -75,6 +81,8 @@ public class HotelController {
         private Long id;
         private String name;
         private Long cityEntity;
+        private String description;
+        private String standard;
 
     }
 }

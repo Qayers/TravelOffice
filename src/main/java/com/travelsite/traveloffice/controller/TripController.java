@@ -1,14 +1,16 @@
 package com.travelsite.traveloffice.controller;
 
-import com.travelsite.traveloffice.model.PurchasedTripEntity;
-import com.travelsite.traveloffice.model.TripEntity;
-import com.travelsite.traveloffice.service.CrudService;
-import com.travelsite.traveloffice.service.TripService;
+import com.travelsite.traveloffice.model.*;
+import com.travelsite.traveloffice.service.*;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+@Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class TripController {
@@ -16,13 +18,46 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
+    @Autowired
+    @Qualifier("cityServiceImpl")
+    private CityService cityService;
+
+    @Qualifier("hotelServiceImpl")
+    @Autowired
+    private HotelService hotelService;
+
+    @Qualifier("airportServiceImpl")
+    @Autowired
+    private AirportService airportService;
+
+
     @GetMapping("/tripFrom")
     public Iterable getAirportFromName() {
         return tripService.findAll();
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addTrip")
-    public ResponseEntity<TripEntity> addTrip(@RequestBody TripEntity tripEntity) {
+    public ResponseEntity<TripEntity> addTrip(@RequestBody TripRequest tripRequest) {
+        log.info("addTrip: {}", tripRequest);
+        TripEntity tripEntity = new TripEntity();
+        CityEntity cityTo = cityService.findOne(tripRequest.getCityTo());
+        tripEntity.setCityTo(cityTo);
+        AirportEntity airportEntityFrom = airportService.findOne(tripRequest.getAirportEntityFrom());
+        tripEntity.setAirportEntityFrom(airportEntityFrom);
+        AirportEntity airportEntityTo = airportService.findOne(tripRequest.getAirportEntityTo());
+        tripEntity.setAirportEntityTo(airportEntityTo);
+        tripEntity.setCountOfDays(tripRequest.getCountOfDays());
+        tripEntity.setCountOfPerson(tripRequest.getCountOfPerson());
+        tripEntity.setDepartureDate(tripRequest.getDepartureDate());
+        tripEntity.setReturnDate(tripRequest.getReturnDate());
+        tripEntity.setDescription(tripRequest.getDescription());
+        tripEntity.setPriceForAdult(tripRequest.getPriceForAdult());
+        tripEntity.setPriceForChild(tripRequest.priceForChild);
+        tripEntity.setPromotion(tripRequest.getPromotion());
+        HotelEntity hotelEntity = hotelService.findOne(tripRequest.getHotelEntity());
+        tripEntity.setHotelEntity(hotelEntity);
         tripService.add(tripEntity);
         return ResponseEntity.ok(tripEntity);
     }
@@ -50,8 +85,20 @@ public class TripController {
         return ResponseEntity.ok(tripService.count());
     }
 
-//    @GetMapping(value = "/searchByCity/{city}")
-//    public ResponseEntity searchByCity(@PathVariable String city){
-//        return ResponseEntity.ok(tripService.searchByCity(city));
-//    }
+    @Data
+    private static class TripRequest {
+        private Long id;
+        public Long cityTo;
+        public Long airportEntityFrom;
+        public Long airportEntityTo;
+        public int countOfDays;
+        public int countOfPerson;
+        public Date departureDate;
+        public Date returnDate;
+        public String description;
+        public double priceForAdult;
+        public double priceForChild;
+        public double promotion;
+        public Long hotelEntity;
+    }
 }
