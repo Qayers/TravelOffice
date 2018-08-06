@@ -1,18 +1,17 @@
 package com.travelsite.traveloffice.controller;
 
 import com.travelsite.traveloffice.model.CityEntity;
-import com.travelsite.traveloffice.model.ContinentEntity;
 import com.travelsite.traveloffice.model.CountryEntity;
 import com.travelsite.traveloffice.service.CityService;
-import com.travelsite.traveloffice.service.ContinentService;
 import com.travelsite.traveloffice.service.CountryService;
-import com.travelsite.traveloffice.service.CrudService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -31,6 +30,7 @@ public class CityController {
 
         return cityService.findAll();
     }
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/addCity")
     public ResponseEntity<CityEntity> addCity(@RequestBody CityRequest cityRequest) {
@@ -67,7 +67,7 @@ public class CityController {
     }
 
     @GetMapping(value = "/findByCountryEntity_Id/{id}")
-    public List<CityEntity> findByCountryEntity_Id(@PathVariable Long id){
+    public List<CityEntity> findByCountryEntity_Id(@PathVariable Long id) {
 
         return cityService.findByCountryEntity_Id(id);
     }
