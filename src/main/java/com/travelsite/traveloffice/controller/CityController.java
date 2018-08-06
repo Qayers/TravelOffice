@@ -13,12 +13,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
-
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Slf4j
@@ -26,10 +20,6 @@ public class CityController {
     @Qualifier("cityServiceImpl")
     @Autowired
     private CrudService cityService;
-
-    @Autowired
-    @Qualifier("continentServiceImpl")
-    private ContinentService continentService;
 
     @Autowired
     @Qualifier("countryServiceImpl")
@@ -48,40 +38,10 @@ public class CityController {
         CityEntity cityEntity = new CityEntity();
         cityEntity.setCountryEntity(countryEntity);
         cityEntity.setName(cityRequest.getName());
-//        CountryEntity countryEntity = cityEntity.getCountryEntity();
-//        Stream<CountryEntity> countries = iteratorToStream(countryService.findAll().iterator(),true);
-//        List<CountryEntity> list = countries.collect(Collectors.toList());
-//        List<CountryEntity> checkList = list
-//                .stream()
-//                .filter(e -> e.getName().equals(countryEntity.getName()))
-//                .collect(Collectors.toList());
-//
-//        if (!checkList.isEmpty()) {
-//            cityEntity.setCountryEntity(checkList.get(0));
-//        }else{
-//            ContinentEntity continentEntity = countryEntity.getContinentEntity();
-//            Stream<ContinentEntity> continents = iteratorToStream(continentService.findAll().iterator(),true);
-//            List<ContinentEntity> list2 = continents.collect(Collectors.toList());
-//            List<ContinentEntity> checkList2 = list2
-//                    .stream()
-//                    .filter(e -> e.getName().equals(continentEntity.getName()))
-//                    .collect(Collectors.toList());
-//
-//            if (!checkList2.isEmpty()) {
-//                countryEntity.setContinentEntity(checkList2.get(0));
-//                cityEntity.setCountryEntity(countryEntity);
-//            }
-//        }
-//
         cityService.add(cityEntity);
         return ResponseEntity.ok(cityEntity);
     }
 
-
-    public static <T> Stream<T> iteratorToStream(final Iterator<T> iterator, final boolean parallell) {
-        Iterable<T> iterable = () -> iterator;
-        return StreamSupport.stream(iterable.spliterator(), parallell);
-    }
     @GetMapping("/getCity/{id}")
     public ResponseEntity<CityEntity> getCity(@PathVariable Long id) {
         CityEntity cityEntity = (CityEntity) cityService.findOne(id);
