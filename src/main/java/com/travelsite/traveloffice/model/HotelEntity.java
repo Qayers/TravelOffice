@@ -15,7 +15,7 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "hotel")
 public class HotelEntity {
 
-    private enum  Standard {
+    private enum Standard {
         BB("BB (bed & breakfast) – samo śniadanie"),
         HB("HB (half board) – śniadanie i obiadokolacja"),
         FB("FB (full board) – pełne wyżywienie, które obejmuje śniadanie, obiad, kolację"),
@@ -30,17 +30,18 @@ public class HotelEntity {
 
         ;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_hotel")
     private Long id;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false)
-    private Standard standard;
+    private Standard Standard;
     private String description;
     @JoinColumn(name = "id_city")
-    @ManyToOne(fetch = FetchType.LAZY,cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private CityEntity cityEntity;

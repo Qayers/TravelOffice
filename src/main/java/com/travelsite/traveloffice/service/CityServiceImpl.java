@@ -5,6 +5,8 @@ import com.travelsite.traveloffice.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CityServiceImpl extends CrudServiceBaseImpl<CityEntity> implements CityService {
 
@@ -16,8 +18,9 @@ public class CityServiceImpl extends CrudServiceBaseImpl<CityEntity> implements 
         this.cityJpaRepository = repository;
     }
 
+    @Override
+    public List<CityEntity> findByCountryEntity_Id(Long foreignKey){
 
-
-
-
+        return cityJpaRepository.findByCountryEntity_Id(foreignKey);
+    }
 }

@@ -1,5 +1,7 @@
 package com.travelsite.traveloffice.service;
 
+import com.travelsite.traveloffice.model.CountryEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -23,6 +25,5 @@ public interface CrudService<T, ID extends Serializable> {
     void modify(T entity);
 
     boolean exists(ID primaryKey);
-
 }
 
