@@ -3,6 +3,7 @@ package com.travelsite.traveloffice.controller;
 import com.travelsite.traveloffice.model.CityEntity;
 import com.travelsite.traveloffice.model.ContinentEntity;
 import com.travelsite.traveloffice.model.CountryEntity;
+import com.travelsite.traveloffice.service.CityService;
 import com.travelsite.traveloffice.service.ContinentService;
 import com.travelsite.traveloffice.service.CountryService;
 import com.travelsite.traveloffice.service.CrudService;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class CityController {
     @Qualifier("cityServiceImpl")
     @Autowired
-    private CrudService cityService;
+    private CityService cityService;
 
     @Autowired
     @Qualifier("countryServiceImpl")
@@ -65,6 +66,11 @@ public class CityController {
         return ResponseEntity.ok(cityService.count());
     }
 
+    @GetMapping(value = "/findByCountryEntity_Id/{id}")
+    public List<CityEntity> findByCountryEntity_Id(@PathVariable Long id){
+
+        return cityService.findByCountryEntity_Id(id);
+    }
 
     @Data
     private static class CityRequest {

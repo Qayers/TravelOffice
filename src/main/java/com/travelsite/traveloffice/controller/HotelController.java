@@ -1,11 +1,13 @@
 package com.travelsite.traveloffice.controller;
 
+
 import com.sun.xml.internal.bind.api.impl.NameConverter;
 import com.travelsite.traveloffice.model.AirportEntity;
+
 import com.travelsite.traveloffice.model.CityEntity;
 import com.travelsite.traveloffice.model.HotelEntity;
 import com.travelsite.traveloffice.service.CityService;
-import com.travelsite.traveloffice.service.CrudService;
+import com.travelsite.traveloffice.service.HotelService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +15,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Slf4j
 public class HotelController {
     @Qualifier("hotelServiceImpl")
     @Autowired
-    private CrudService hotelService;
+    private HotelService hotelService;
 
     @Autowired
     @Qualifier("cityServiceImpl")
@@ -65,6 +69,11 @@ public class HotelController {
     @GetMapping(value = "/hotelCount")
     public ResponseEntity count() {
         return ResponseEntity.ok(hotelService.count());
+    }
+
+    @GetMapping(value = "/findByCityEntity_Id/{id}")
+    public List<HotelEntity> findByCityEntity_Id(@PathVariable Long id) {
+        return hotelService.findByCityEntity_Id(id);
     }
 
     @Data

@@ -8,7 +8,6 @@ import lombok.Data;
 import javax.persistence.*;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.CascadeType.MERGE;
 
 
 @Data

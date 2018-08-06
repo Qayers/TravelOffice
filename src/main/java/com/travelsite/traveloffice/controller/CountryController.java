@@ -3,7 +3,7 @@ package com.travelsite.traveloffice.controller;
 import com.travelsite.traveloffice.model.ContinentEntity;
 import com.travelsite.traveloffice.model.CountryEntity;
 import com.travelsite.traveloffice.service.ContinentService;
-import com.travelsite.traveloffice.service.CrudService;
+import com.travelsite.traveloffice.service.CountryService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+
+
 @CrossOrigin(origins = "http://localhost:4200")
 @Slf4j
 @RestController
 public class CountryController {
     @Qualifier("countryServiceImpl")
     @Autowired
-    private CrudService countryService;
+    private CountryService countryService;
 
     @Autowired
     @Qualifier("continentServiceImpl")
@@ -63,7 +71,11 @@ public class CountryController {
 
     @GetMapping(value = "/countCountry")
     public ResponseEntity count() {
-        return ResponseEntity.ok(countryService.count());
+        return ResponseEntity.ok(countryService.count());}
+
+    @GetMapping(value = "/findByContinentEntity_Id/{id}")
+    public List<CountryEntity> findByContinentEntity_Id(@PathVariable Long id){
+        return countryService.findByContinentEntity_Id(id);
     }
 
     @Data
