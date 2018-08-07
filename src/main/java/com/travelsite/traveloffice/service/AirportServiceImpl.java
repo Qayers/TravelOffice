@@ -5,6 +5,8 @@ import com.travelsite.traveloffice.repository.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AirportServiceImpl extends CrudServiceBaseImpl<AirportEntity> implements AirportService{
 
@@ -14,5 +16,10 @@ public class AirportServiceImpl extends CrudServiceBaseImpl<AirportEntity> imple
     public AirportServiceImpl(AirportRepository repository) {
         super(repository);
         this.airportJpaRepository = repository;
+    }
+    @Override
+    public List<AirportEntity> findByCityEntity_Id(Long foreignKey){
+
+        return airportJpaRepository.findByCityEntity_Id(foreignKey);
     }
 }

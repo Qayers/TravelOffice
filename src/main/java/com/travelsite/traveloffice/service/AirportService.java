@@ -2,6 +2,8 @@ package com.travelsite.traveloffice.service;
 
 import com.travelsite.traveloffice.model.AirportEntity;
 
-public interface AirportService extends CrudService<AirportEntity,Long>{
+import java.util.List;
 
+public interface AirportService extends CrudService<AirportEntity, Long> {
+    List<AirportEntity> findByCityEntity_Id(Long foreignKey);
 }
