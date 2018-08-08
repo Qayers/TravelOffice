@@ -1,5 +1,6 @@
 package com.travelsite.traveloffice.service;
 
+import com.travelsite.traveloffice.model.HotelEntity;
 import com.travelsite.traveloffice.model.TripEntity;
 import com.travelsite.traveloffice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,23 @@ public class TripServiceImpl extends CrudServiceBaseImpl<TripEntity> implements 
         this.tripJpaRepository = repository;
     }
 
+    @Override
+    public List<TripEntity> findByCitiTo_Id(Long CitiId) {
+        return tripJpaRepository.findByCityTo_Id(CitiId);
+
+    }
+
+    @Override
+
+    public List<TripEntity>findByCityTo_CountryEntity_Id(Long CountryId){
+        return tripJpaRepository.findByCityTo_CountryEntity_Id(CountryId);
+    }
+
+    @Override
+
+    public List<TripEntity> findByCityTo_CountryEntity_ContinentEntity_Id(Long ContinentId){
+        return tripJpaRepository.findByCityTo_CountryEntity_ContinentEntity_Id(ContinentId);
+    }
 //    @Override
 //    public List<TripEntity> searchByCity(String city) {
 //        List<TripEntity> list = tripJpaRepository.findAll()
