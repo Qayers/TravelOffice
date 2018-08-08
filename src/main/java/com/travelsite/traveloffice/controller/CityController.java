@@ -66,6 +66,7 @@ public class CityController {
         return ResponseEntity.ok(cityService.count());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/findByCountryEntity_Id/{id}")
     public List<CityEntity> findByCountryEntity_Id(@PathVariable Long id) {
 

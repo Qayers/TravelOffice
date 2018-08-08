@@ -87,15 +87,18 @@ public class TripController {
         return ResponseEntity.ok(tripService.count());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value="/tripFindByCitiTo_Id/{id}")
     public List<TripEntity> findByCityEntity_Id(@PathVariable Long id) { return tripService.findByCitiTo_Id(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value ="/tripFindByCountry_Id/{id}")
     public List<TripEntity> findByCountry_Id(@PathVariable Long id){
         return tripService.findByCityTo_CountryEntity_Id(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value="/tripFindByContinent_Id/{id}")
     public List<TripEntity> findByContinent_Id(@PathVariable Long id) {
         return tripService.findByCityTo_CountryEntity_ContinentEntity_Id(id);

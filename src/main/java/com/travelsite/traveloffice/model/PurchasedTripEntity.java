@@ -14,7 +14,7 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "purchasedtrip")
 public class PurchasedTripEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)

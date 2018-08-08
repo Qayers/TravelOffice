@@ -71,6 +71,7 @@ public class HotelController {
         return ResponseEntity.ok(hotelService.count());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/findByCityEntity_Id/{id}")
     public List<HotelEntity> findByCityEntity_Id(@PathVariable Long id) {
         return hotelService.findByCityEntity_Id(id);

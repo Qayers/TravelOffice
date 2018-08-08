@@ -16,7 +16,7 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name = "trip")
 public class TripEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_trip")
     private Long id;
 

@@ -33,7 +33,7 @@ public class HotelEntity {
 //    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hotel")
     private Long id;
 

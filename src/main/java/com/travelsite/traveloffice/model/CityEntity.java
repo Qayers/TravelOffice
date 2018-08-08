@@ -15,7 +15,7 @@ import static javax.persistence.CascadeType.ALL;
 public class CityEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_city")
     private Long id;
     @Column(unique = true, nullable = false)
