@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+
 @Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -64,7 +66,7 @@ public class TripController {
 
     @GetMapping("/getTrip/{id}")
     public ResponseEntity<TripEntity> getTrip(@PathVariable Long id) {
-        TripEntity tripEntity = (TripEntity) tripService.findOne(id);
+        TripEntity tripEntity = tripService.findOne(id);
         return ResponseEntity.ok(tripEntity);
     }
 
@@ -83,6 +85,20 @@ public class TripController {
     @GetMapping(value = "/tripCount")
     public ResponseEntity count() {
         return ResponseEntity.ok(tripService.count());
+    }
+
+    @GetMapping(value="/tripFindByCitiTo_Id/{id}")
+    public List<TripEntity> findByCityEntity_Id(@PathVariable Long id) { return tripService.findByCitiTo_Id(id);
+    }
+
+    @GetMapping(value ="/tripFindByCountry_Id/{id}")
+    public List<TripEntity> findByCountry_Id(@PathVariable Long id){
+        return tripService.findByCityTo_CountryEntity_Id(id);
+    }
+
+    @GetMapping(value="/tripFindByContinent_Id/{id}")
+    public List<TripEntity> findByContinent_Id(@PathVariable Long id) {
+        return tripService.findByCityTo_CountryEntity_ContinentEntity_Id(id);
     }
 
     @Data
