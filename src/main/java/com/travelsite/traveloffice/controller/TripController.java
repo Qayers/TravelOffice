@@ -104,6 +104,18 @@ public class TripController {
         return tripService.findByCityTo_CountryEntity_ContinentEntity_Id(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value="/tripFindByHotel_Id/{id}")
+    public List<TripEntity> findByHotel_Id(@PathVariable Long id) {
+        return tripService.findByHotelEntity_Id(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value="/tripFindByAirport_Id/{id}")
+    public List<TripEntity> findByAirport(@PathVariable Long id) {
+        return tripService.findByAirportEntityFrom_Id(id);
+    }
+
     @Data
     private static class TripRequest {
         private Long id;
