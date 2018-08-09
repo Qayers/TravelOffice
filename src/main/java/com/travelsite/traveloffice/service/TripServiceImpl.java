@@ -1,14 +1,11 @@
 package com.travelsite.traveloffice.service;
 
-import com.travelsite.traveloffice.model.HotelEntity;
 import com.travelsite.traveloffice.model.TripEntity;
 import com.travelsite.traveloffice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TripServiceImpl extends CrudServiceBaseImpl<TripEntity> implements TripService {
@@ -29,15 +26,27 @@ public class TripServiceImpl extends CrudServiceBaseImpl<TripEntity> implements 
 
     @Override
 
-    public List<TripEntity>findByCityTo_CountryEntity_Id(Long CountryId){
+    public List<TripEntity> findByCityTo_CountryEntity_Id(Long CountryId) {
         return tripJpaRepository.findByCityTo_CountryEntity_Id(CountryId);
     }
 
     @Override
 
-    public List<TripEntity> findByCityTo_CountryEntity_ContinentEntity_Id(Long ContinentId){
+    public List<TripEntity> findByCityTo_CountryEntity_ContinentEntity_Id(Long ContinentId) {
         return tripJpaRepository.findByCityTo_CountryEntity_ContinentEntity_Id(ContinentId);
     }
+
+    @Override
+    public List<TripEntity> findByHotelEntity_Id(Long HotelId) {
+        return tripJpaRepository.findByHotelEntity_Id(HotelId);
+    }
+
+    @Override
+
+    public List<TripEntity> findByAirportEntityFrom_Id(Long AirportId) {
+        return tripJpaRepository.findByAirportEntityFrom_Id(AirportId);
+    }
+
 //    @Override
 //    public List<TripEntity> searchByCity(String city) {
 //        List<TripEntity> list = tripJpaRepository.findAll()

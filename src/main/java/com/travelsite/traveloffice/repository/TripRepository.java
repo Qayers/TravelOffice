@@ -17,4 +17,8 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
 
     List<TripEntity>findByCityTo_CountryEntity_ContinentEntity_Id(Long ContinentId);
 
+    List<TripEntity>findByHotelEntity_Id(Long HotelId);
+
+    List<TripEntity>findByAirportEntityFrom_Id(Long AirportId);
+
 }
